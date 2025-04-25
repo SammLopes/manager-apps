@@ -6,6 +6,8 @@ echo Android Studio - 3
 echo PyCharm - 4
 echo Iniciar VM -5
 echo Encerrar VM -6
+echo Iniciar DBeaver -7
+echo Acessar VM via ssh -8
 echo Sair - 0
 
 set /p soft=Digite um Numero: 
@@ -46,6 +48,19 @@ if "%soft%"=="6" (
   echo Encerrando VM.....
   CALL :changeDicVm
   vagrant halt
+  GOTO :fim
+)
+
+if "%soft%"=="7" (
+  echo Abrindo DBeaver....
+  start "" "C:\Users\mp_so\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\DBeaver Community\DBeaver.lnk"  
+  GOTO :fim
+)
+
+if "%soft%"=="8" (
+  echo Acessando ssh VM......
+  CALL :changeDicVm
+  vagrant ssh
   GOTO :fim
 )
 
