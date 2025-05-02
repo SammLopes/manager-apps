@@ -3,6 +3,12 @@
 title Menu de Programas
 color 0A
 
+echo Parametro da linha %1
+if "%1" NEQ "" (
+  call cli.bat
+  GOTO :fim
+)
+
 echo ========================================
 echo       MENU DE PROGRAMAS DO SAMUEL
 echo ========================================
@@ -21,26 +27,22 @@ echo ========================================
 set /p soft=Digite um Numero: 
 
 if "%soft%"=="1" (
-  echo Segundo argumento: %1
   call comandos\webstorm.bat 
   GOTO :fim
 )
 
 if "%soft%"=="2" (
-  echo Abrindo PhpStorm...
-  start "" "C:\Program Files\JetBrains\PhpStorm 2024.3.4\bin\phpstorm64.exe"
+  call comandos\phpstorm.bat
   GOTO :fim
 )
 
 if "%soft%"=="3" (
-  echo Abrindo Android Studio...
-  start "" "C:\Program Files\Android\Android Studio\bin\studio64.exe"
+  call comandos\android.bat
   GOTO :fim
 )
 
 if "%soft%"=="4" (
-  echo Abrindo PyCharm...
-  start "" "C:\Program Files\JetBrains\PyCharm 2024.3.5\bin\pycharm64.exe"
+  call comandos\pycharm.bat
   GOTO :fim
 )
 
@@ -60,8 +62,7 @@ if "%soft%"=="6" (
 )
 
 if "%soft%"=="7" (
-  echo Abrindo DBeaver....
-  start "" "C:\Users\mp_so\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\DBeaver Community\DBeaver.lnk"  
+  call comandos\dbeaver.bat
   GOTO :fim
 )
 
