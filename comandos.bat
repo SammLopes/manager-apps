@@ -1,20 +1,28 @@
 @echo off
-echo Qual programa vai abrir hj Samuel?
-echo WebStorm - 1
-echo PhpStorm - 2
-echo Android Studio - 3
-echo PyCharm - 4
-echo Iniciar VM -5
-echo Encerrar VM -6
-echo Iniciar DBeaver -7
-echo Acessar VM via ssh -8
-echo Sair - 0
 
+title Menu de Programas
+color 0A
+
+echo ========================================
+echo       MENU DE PROGRAMAS DO SAMUEL
+echo ========================================
+echo [1] Abrir WebStorm
+echo [2] Abrir PhpStorm
+echo [3] Android Studio 
+echo [4] PyCharm 
+echo [5] Iniciar VM 
+echo [6] Encerrar VM 
+echo [7] Iniciar DBeaver 
+echo [8] Acessar VM via ssh 
+echo [0] Sair
+echo ========================================
+echo Qual programa vai abrir hj Samuel?
+echo ========================================
 set /p soft=Digite um Numero: 
 
 if "%soft%"=="1" (
-  echo Abrindo WebStorm...
-  start "" "C:\Program Files\JetBrains\WebStorm 2025.1\bin\webstorm64.exe"
+  echo Segundo argumento: %1
+  call comandos\webstorm.bat 
   GOTO :fim
 )
 
