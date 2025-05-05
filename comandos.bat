@@ -1,11 +1,9 @@
 @echo off
 
 title Menu de Programas
-color 0A
 
-echo Parametro da linha %1
 if "%1" NEQ "" (
-  call cli.bat
+  call cli.bat %1 %2 
   GOTO :fim
 )
 

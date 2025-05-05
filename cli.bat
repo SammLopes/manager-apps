@@ -1,33 +1,33 @@
 @echo off
-echo Arquivo cli.bat 
+echo Meu cli primitivo
 
-//Redirecionar para phpstorm.bat
-if "%1" == "phpstorm" (
+if "%1"=="phpstorm" (
   CALL comandos\phpstorm.bat 
   GOTO :fim
-)
-//Redirecionar para websotorm.bat
-if "%1" == "webstorm"(
+) 
+
+if "%1"=="webstorm" (
+  echo Teste dentor do webstorm
   CALL comandos\webstorm.bat
   GOTO :fim
 )
-//Redirecionar para pycharm.bat
-if "%1" == "pycharm" (
+
+if "%1"=="pycharm" (
   CALL comandos\pycharm.bat  
   GOTO :fim
 )
-//Redicerionar para android-studio.bat 
-if "%1" == "andoroid" (
+
+if "%1"=="android" (
   CALL comandos\android.bat
   GOTO :fim
 )
-//Redirecionar para vm.bat
-if "%1" == "vm" (
-  CALL comandos\vm\vm.bat
+
+if "%1"=="vm" (
+  CALL comandos\vm\vm.bat %2
   GOTO :fim
 )
-//Caso não seja nenhum deles mostramos a tela de help
-if "%1" == "help" (
+
+if "%1"=="help" (
   GOTO :help 
   GOTO :fim
 )
@@ -40,8 +40,8 @@ echo [webstorm] Abrir WebStorm
 echo [phpstorm] Abrir PhpStorm
 echo [android] Android Studio 
 echo [pycharm] PyCharm 
+echo [vm] Acessar VM cmd
 echo ========================================
 GOTO :EOF
 
-:fim 
-echo fim do programa
+:fim  
