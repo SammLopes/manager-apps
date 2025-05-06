@@ -22,6 +22,13 @@ if "%1"=="enter" (
   GOTO :fim
 )
 
+if "%1"=="status" (
+  echo Status...
+  CALL :changeDicVm
+  vagrant status 
+  GOTO :fim
+)
+
 if "%1" == "help" (
   CALL :help
   GOTO :fim
@@ -34,6 +41,7 @@ echo ========================================
 echo [init] Iniciar VM 
 echo [stop] Para VM
 echo [enter] Acessar VM via SSH 
+echo [status] Verificar Status VM
 echo ========================================
 GOTO :EOF
 
