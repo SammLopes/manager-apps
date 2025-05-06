@@ -3,7 +3,7 @@
 title Menu de Programas
 
 if "%1" NEQ "" (
-  call cli.bat %1 %2 
+  call "%~dp0cli.bat" %1 %2 
   GOTO :fim
 )
 
@@ -84,4 +84,4 @@ cd /d "C:\Homestead\"
 GOTO :EOF
 
 :fim 
-echo fim do programa
+echo Fim do Programa

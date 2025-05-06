@@ -1,29 +1,30 @@
 @echo off
-echo Meu cli primitivo
+
+set MeuDictCurr=%CD%
 
 if "%1"=="phpstorm" (
-  CALL comandos\phpstorm.bat 
+  CALL "%~dp0comandos\phpstorm.bat" 
   GOTO :fim
 ) 
 
 if "%1"=="webstorm" (
-  echo Teste dentor do webstorm
-  CALL comandos\webstorm.bat
+  CALL "%~dp0comandos\webstorm.bat"
   GOTO :fim
 )
 
 if "%1"=="pycharm" (
-  CALL comandos\pycharm.bat  
+  CALL "%~dp0comandos\pycharm.bat""  
   GOTO :fim
 )
 
 if "%1"=="android" (
-  CALL comandos\android.bat
+  CALL "%~dp0comandos\android.bat"
   GOTO :fim
 )
 
 if "%1"=="vm" (
-  CALL comandos\vm\vm.bat %2
+  CALL "%~dp0comandos\vm\vm.bat" %2
+  CALL :changeDicCurrent
   GOTO :fim
 )
 
@@ -31,6 +32,10 @@ if "%1"=="help" (
   GOTO :help 
   GOTO :fim
 )
+
+:changeDicCurrent
+cd /d %MeuDictCurr%
+GOTO :EOF
 
 :help 
 echo ========================================

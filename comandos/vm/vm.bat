@@ -1,8 +1,5 @@
 @echo off
-echo arquivo de manipulação de VM do Virtual Box
-echo nesse arquivo começamos a analisar o segundo parametro informado, sem contar o primeiro nome.
-echo %1 segundo parametro
- 
+
 if "%1" == "init" (
   echo Iniciando VM........ 
   start "" "C:\Program Files\Oracle\VirtualBox\VirtualBox.exe"
@@ -13,7 +10,7 @@ if "%1" == "init" (
 
 if "%1" == "stop" (
   echo Encerrando VM.....
-  CALL changeDicVm
+  CALL :changeDicVm
   vagrant halt
   GOTO :fim
 )
