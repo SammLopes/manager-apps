@@ -22,6 +22,11 @@ if "%1"=="android" (
   GOTO :fim
 )
 
+if "%1"=="dbeaver" (
+  CALL "%~dp0comandos\dbeaver.bat"
+  GOTO :fim
+)
+
 if "%1"=="vm" (
   CALL "%~dp0comandos\vm\vm.bat" %2
   CALL :changeDicCurrent
