@@ -33,6 +33,11 @@ if "%1"=="vm" (
   GOTO :fim
 )
 
+if "%1"=="git" (
+  CALL "%~dp0comandos\git\git.bat" %2 
+  GOTO :fim
+)
+
 if "%1"=="help" (
   GOTO :help 
   GOTO :fim

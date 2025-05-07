@@ -7,6 +7,13 @@ echo Arquivo de facildiade do git
 :: git config --global user.email <email>
 :: Adicionar reporitórios 
 :: git remote add origin <url>
-:: Lista repostórios 
-:: git remote -v
+if "%1"=="rep-add" (
 
+):: Lista reporitóriosstórios 
+:: git remote -v
+if "%1"=="rep-list" (
+  git remote -v  
+  GOTO :fim
+)
+
+:fim
