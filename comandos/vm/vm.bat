@@ -36,7 +36,7 @@ if "%1" == "help" (
 
 :help 
 echo ========================================
-echo       MENU DE PROGRAMAS DO SAMUEL
+echo       MENU DE PROGRAMAS DO SAMUEL [VM]
 echo ========================================
 echo [init] Iniciar VM 
 echo [stop] Para VM
