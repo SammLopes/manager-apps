@@ -8,7 +8,7 @@ if "%1" NEQ "" (
 )
 
 echo ========================================
-echo       MENU DE PROGRAMAS DO SAMUEL
+echo    [HUBLOCAL]   MENU DE PROGRAMAS DO SAMUEL
 echo ========================================
 echo [1] Abrir WebStorm
 echo [2] Abrir PhpStorm
@@ -25,22 +25,22 @@ echo ========================================
 set /p soft=Digite um Numero: 
 
 if "%soft%"=="1" (
-  call comandos\webstorm.bat 
+  call hubl\webstorm.bat 
   GOTO :fim
 )
 
 if "%soft%"=="2" (
-  call comandos\phpstorm.bat
+  call hubl\webstorm\phpstorm.bat
   GOTO :fim
 )
 
 if "%soft%"=="3" (
-  call comandos\android.bat
+  call hubl\android.bat
   GOTO :fim
 )
 
 if "%soft%"=="4" (
-  call comandos\pycharm.bat
+  call hubl\pycharm.bat
   GOTO :fim
 )
 
@@ -60,7 +60,7 @@ if "%soft%"=="6" (
 )
 
 if "%soft%"=="7" (
-  call comandos\dbeaver.bat
+  CALL hubl\dbeaver.bat
   GOTO :fim
 )
 
