@@ -18,7 +18,7 @@ if "%1"=="pycharm" (
 )
 
 if "%1"=="android" (
-  CALL "%~dp0hubl\android.bat"
+  CALL "%~dp0hubl\android\android.bat" %2 
   GOTO :fim
 )
 
@@ -35,6 +35,11 @@ if "%1"=="vm" (
 
 if "%1"=="git" (
   CALL "%~dp0hubl\git\git.bat" %2 
+  GOTO :fim
+)
+
+if "%1"=="exp" (
+  start .
   GOTO :fim
 )
 
@@ -56,6 +61,7 @@ echo [phpstorm] Abrir PhpStorm
 echo [android] Android Studio 
 echo [pycharm] PyCharm 
 echo [vm] Acessar VM cmd
+echo [exp] Abrir explorer de arquivos
 echo ========================================
 GOTO :EOF
 
