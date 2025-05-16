@@ -8,6 +8,12 @@ if "%1"=="" (
   timeout /t 8  >nul
   GOTO :fim
 )
+
+if "%1"=="help" (
+  CALL :help
+  GOTO :fim
+)
+
 set /p projectRoot=Copie o diretório do projeot andorid (Caminho Absoluto):
 if "!projectRoot!"=="" (
     echo Nenhum diretório foi informado. Saindo...
@@ -69,6 +75,17 @@ GOTO :EOF
     ECHO Erro: gradlew dependencies falhou com ERRORLEVEL !ERRORLEVEL!.
     EXIT /B 1
   )
+GOTO :EOF
+
+:help
+  echo ========================================
+  echo   MENU DE PROGRAMAS DO SAMUEL [Android]
+  echo ========================================
+  echo [build] Faz o build do aplicativo
+  echo [apk] Cria os apk's tando Release quanto Debug
+  echo [bundle] Cria o bundle em formato .aab  
+  echo [singer] Verifica se o apk ou o bundle esta assinado
+  echo ========================================
 GOTO :EOF
 
 :fim
