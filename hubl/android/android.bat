@@ -1,84 +1,14 @@
 @echo off
-
-setlocal enabledelayedexpansion
-
-if "%1"=="" (
-  echo Abrindo Android Studio...
-  start "" "C:\Program Files\Android\Android Studio\bin\studio64.exe"
-  timeout /t 8  >nul
-  GOTO :fim
-)
-
-if "%1"=="help" (
-  CALL :help
-  GOTO :fim
-)
-
-set /p projectRoot=Copie o diretório do projeto andorid (Caminho Absoluto):
-if "!projectRoot!"=="" (
-    echo Nenhum diretório foi informado. Saindo...
-    EXIT /B 1
-)
-:: Mudar para o diretório onde esta o projeto android
-CALL :changeDicForRootProjectAndroid || EXIT /B 1
-:: Executar o comando de clean e dependencies
-if "%1"=="build" (
-  gradlew clean
-  
-  IF ERRORLEVEL 1 (
-    echo Erro: gradlew clean falhou com ERRORLEVEL %ERRORLEVEL%.
-    EXIT /B 1
-  )
-
-  gradlew dependencies
-  
-  IF ERRORLEVEL 1 (
-    echo Erro: gradlew clean falhou com ERRORLEVEL %ERRORLEVEL%.
-    EXIT /B 1
-  )  
-  GOTO :fim
-)
-:: Cria o app apk 
-if "%1"=="apk" (
-
-  set /p release=Deseja o apk release ? (S(Sim) ou N(Não)):
-  set /p debug=Deseja o apk debug ? (S(Sim) ou N(Não)):
-
-  
-  if /i "%release%"=="S" (
-   gradlew assembleRelease   
-   CALL :verifyFail || EXIT /B 1
-  )
- 
-  if /i "%debug%"=="S" (
-   gradlew assembleDebug
-   CALL :verifyFail || EXIT /B 1
-  )
- 
-  GOTO :fim
-)
-
-:: Criar o app bundle
-if "%1"=="bundle" (
-  gradlew bundleRelease
-  GOTO :fim
-)
-:: Executar a verificação se o app apk esta assinado
-if "%1"=="singer" (
-  set /p nomeApp=Digite o nome do App:
-  set "apkPath=!projectRoot!\android\app\build\outputs\apk\release\!nomeApp!"
-
-  if not exist "!apkPath!" (
-      echo APK não encontrado: !apkPath!
-      EXIT /B 1
-  )
-  jarsigner -verify -verbose -certs "%projectRoot%\android\app\build\outputs\apk\release\%nomeApp%"
-  GOTO :fim
-)
-
-::OBS: adicionar comandos do adb (Android Debug Bridge)
+chcp 65001 >nul
+:: >>> PONTO DE ENTRADA <<< 
+GOTO :main
+:: ======== Funções ========
 :changeDicForRootProjectAndroid
 cd /d "%projectRoot%"
+if not exist gradlew (
+  echo [Erro] gradlew não encontrado no diretório informado.
+  EXIT /B 1
+)
 GOTO :EOF
 
 :help
@@ -92,5 +22,63 @@ echo [singer] Verifica se o apk ou o bundle esta assinado
 echo ========================================
 GOTO :EOF
 
-:fim
+:verifyFail
+IF ERRORLEVEL 1 (
+    echo Erro: gradlew dependencies falhou com ERRORLEVEL %ERRORLEVEL%.
+    EXIT /B 1
+)
+GOTO :EOF
 
+:bundle
+gradlew bundleRelease
+GOTO :EOF
+
+:clean
+gradlew clean  
+GOTO :EOF
+
+:dependencies
+gradlew dependencies
+GOTO :EOF
+
+:build
+gradlew clean  
+IF ERRORLEVEL 1 (
+    echo Erro: gradlew dependencies falhou com ERRORLEVEL %ERRORLEVEL%.
+    EXIT /B 1
+)
+gradlew dependencies 
+IF ERRORLEVEL 1 (
+    echo Erro: gradlew dependencies falhou com ERRORLEVEL %ERRORLEVEL%.
+    EXIT /B 1
+)
+
+
+:: ======== Inico da lógica ========
+:main
+if "%1"=="" (
+  echo Abrindo Android Studio...
+  start "" "C:\Program Files\Android\Android Studio\bin\studio64.exe"
+  timeout /t 8  >nul
+  GOTO :fim
+)
+
+if "%1"=="help" (
+  CALL :help
+  GOTO :fim
+)
+
+set /p projectRoot=Copie o diretório do projeto andorid (Caminho Absoluto):
+if "%projectRoot%"=="" (
+    echo Nenhum diretório foi informado. Saindo...
+    EXIT /B 1
+)
+:: Mudar para o diretório onde esta o projeto android
+CALL :changeDicForRootProjectAndroid || EXIT /B 1
+:: Executar o comando de clean e dependencies
+if "%1"=="build" GOTO :build
+
+::OBS: adicionar comandos do adb (Android Debug Bridge)
+
+:fim
+EXIT /B
